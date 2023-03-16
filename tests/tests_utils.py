@@ -1,7 +1,7 @@
 import json
 import pytest
 
-import utils
+import utils.utils
 import main
 
 
@@ -117,28 +117,28 @@ def test_6_items():
 
 
 def test_get_operations(test_data):
-    assert utils.get_operations(main.data_file) != test_data
+    assert utils.utils.get_operations(main.data_file) != test_data
 
 
 def test_filter_by_state(test_data_ok):
-    for item in utils.filter_by_state(test_data_ok, 'EXECUTED'):
+    for item in utils.utils.filter_by_state(test_data_ok, 'EXECUTED'):
         assert item['state'] == 'EXECUTED'
 
-    for item in utils.filter_by_state(test_data_ok, 'CANCELED'):
+    for item in utils.utils.filter_by_state(test_data_ok, 'CANCELED'):
         assert item['state'] == 'CANCELED'
 
-    assert utils.filter_by_state(test_data_ok, 'TEST') == []
+    assert utils.utils.filter_by_state(test_data_ok, 'TEST') == []
 
 
 def test_templ_operation(test_6_items):
-    data, descr, source, destin, amount, currency = utils.templ_operation(test_6_items[0])
+    data, descr, source, destin, amount, currency = utils.utils.templ_operation(test_6_items[0])
     assert data == '26.08.2019'
     assert descr == "Перевод организации"
     assert source == "Maestro 1596 83** **** 5199"
     assert destin == "Счет **9589"
     assert amount == "31957.58"
     assert currency == "руб."
-    data, descr, source, destin, amount, currency = utils.templ_operation(test_6_items[2])
+    data, descr, source, destin, amount, currency = utils.utils.templ_operation(test_6_items[2])
     assert data == '30.06.2018'
     assert descr == "Перевод организации"
     assert source == "Счет **6952"
@@ -148,12 +148,13 @@ def test_templ_operation(test_6_items):
 
 
 def test_format_date():
-    assert utils.format_date("2019-08-26T10:50:58.294041") == "26.08.2019"
-    assert utils.format_date("2019-07-03T18:35:29.512364") == "03.07.2019"
-    assert utils.format_date("2018-06-30T02:08:58.425572") == "30.06.2018"
+    assert utils.utils.format_date("2019-08-26T10:50:58.294041") == "26.08.2019"
+    assert utils.utils.format_date("2019-07-03T18:35:29.512364") == "03.07.2019"
+    assert utils.utils.format_date("2018-06-30T02:08:58.425572") == "30.06.2018"
 
 
 def test_add_mask():
-    assert utils.add_mask("MasterCard 7158300734726758") == "MasterCard 7158 30** **** 6758"
-    assert utils.add_mask("Счет 64686473678894779589") == "Счет **9589"
-    assert utils.add_mask("Счет 646864736788") == 'Счет ???_номер_карты,_счёта_???'
+    assert utils.utils.add_mask("MasterCard 7158300734726758") == "MasterCard 7158 30** **** 6758"
+    assert utils.utils.add_mask("Счет 64686473678894779589") == "Счет **9589"
+    assert utils.utils.add_mask("Счет 646864736788") == 'Счет ???_номер_карты,_счёта_???'
+

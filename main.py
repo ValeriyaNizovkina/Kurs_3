@@ -1,6 +1,6 @@
 import os
 from operator import itemgetter
-from utils import get_operations, filter_by_state, templ_operation
+from utils.utils import get_operations, filter_by_state, templ_operation
 
 # Получаем полный путь к файлу с данными
 OPERATION_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -17,3 +17,4 @@ for i in sorted(user_exec, key=itemgetter('date'), reverse=True)[:5]:
     print(data, descr)
     print(source, '->', destin) if source else print(destin)
     print(amount, currency, "\n")
+
