@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "course-work-3"
+version = "0.1.0"
+description = ""
+authors = ["Mkupr <mkupr@outlook.com>"]
+readme = "README.md"
+packages = [{include = "course_work_3"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
